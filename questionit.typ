@@ -14,6 +14,7 @@
   spacing: 1em,
   drawbox: none,
   graph: none,
+  numberline: none,
   choices: none,
   matching: none,
   horizontal: none,
@@ -64,7 +65,13 @@
           [])
       ]
     )
-  let willdrop = if dropboxes != none { dropboxes } else {choices == none and matching == none and drawbox == none or sameline == false} // and answerline and writelines == -1 and drawbox != none
+  let willdrop = if dropboxes != none {
+    dropboxes
+  } else if answerline {
+    true
+  } else if choices != none or matching != none or drawbox != none {
+     false
+  } else if sameline == false {true} // and answerline and writelines == -1 and drawbox != none
 
   if not willdrop and not ungraded [
     #set place(dy: -3.5pt)
@@ -104,8 +111,8 @@
       h(1fr)
       if graph == "polar" {
         align(right, graphpolar())
-      } else if graph == "numberline" {
-        align(right, numberline())
+      // } else if graph == "numberline" {
+      //   align(right, graphline())
       } else {
         v(-3em)
         align(right, graphgrid())
@@ -193,13 +200,16 @@
     }
 
     // answerline and dropped points boxes
-    #if willdrop or answerline [
+    #if willdrop or answerline or numberline != none [
       #place(
         right + bottom,
         // dy: spacing,
         [
           #if answerline [
             #number. #box([#line(stroke: 0.4pt, length: answerlinelength, start: (4pt, 0pt))])
+          ]
+          #if numberline != none [
+            #number. #box(graphline(width: numberline))
           ]
           #if willdrop and not ungraded [
             #set place(dy: -10.5pt)
@@ -218,7 +228,7 @@
   question,
   pointsplacement: "right",
   number: "",
-  dropallboxes: true,
+  dropallboxes: none,
   defaultpoints: none,
 ) = {
   let exists(key) = {
@@ -236,15 +246,15 @@
     question.insert("answerline", false)
     question.insert("spacing", 0pt)
   }
-  if question.at("numberline", default: none) != none {
-    question.insert("graph", "numberline")
-  }
+  // if question.at("numberline", default: none) != none {
+  //   question.insert("graph", "numberline")
+  // }
   
   let defaults = (
     "writelines": none,
     "tf": false,
     "sameline": if question.at("choices", default: none) != none and question.at("sameline", default: true) {true} else {false},
-    "answerline": if question.at("choices", default: none) != none or question.at("graph", default: none) != none or question.at("writelines", default: none) != none {false} else {true},
+    "answerline": if question.at("choices", default: none) != none or question.at("graph", default: none) != none or question.at("numberline", default: none) != none or question.at("writelines", default: none) != none {false} else {true},
   )
   
   let args = (
@@ -255,6 +265,7 @@
     spacing: question.at("spacing", default: 3em),
     drawbox: question.at("drawbox", default: none),
     graph: question.at("graph", default: none),
+    numberline: question.at("numberline", default: none),
     choices: question.at("choices", default: none),
     matching: question.at("matching", default: none),
     horizontal: question.at("horizontal", default: none),
@@ -268,8 +279,4 @@
     likert: question.at("likert", default: none),
   )
   box(showquestion(..args))
-  // question(question: "hello")
-  // let abc(xyz: false) = {}
-  // let rst = (xyz: "wow", )
-  // abc(..rst)
 }

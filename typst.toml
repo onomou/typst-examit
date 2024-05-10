@@ -1,7 +1,7 @@
 [package]
 name = "examit"
 version = "0.1.0"
-entrypoint = "lib.typ"
+entrypoint = "examit.typ"
 authors = ["Steven Williams"]
 license = "MIT"
 description = "An exam template based on the MIT LaTeX exam.cls"

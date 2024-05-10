@@ -57,7 +57,7 @@
     }
   )
 ]
-#let numberline(width: 20, unitlength: 4mm) = {
+#let graphline(width: 20, unitlength: 4mm) = {
   [
     #cetz.canvas(
       length: unitlength, {

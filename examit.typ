@@ -5,19 +5,17 @@
 #let totalpoints = context pointscounter.final()
 
 #let examit(
+  body,
   title: "Default Title",
   subtitle: none,
-  authors: (),
   date: none,
-  body,
-  margin: (left: 12mm, right: 12mm, top: 12mm, bottom: 12mm),
+  margin: (left: 18mm, right: 25mm, top: 16mm, bottom: 25mm),
   cols: 1,
   gutter: 1.3em,
   questions: none,
   instructions: none,
-  before: none,
   showdrawbox: true,
-  dropallboxes: true,
+  dropallboxes: none,
   namebox: "left",
   pointsplacement: "right",
   answerlinelength: 4cm,
@@ -27,7 +25,7 @@
 ) = {
   // Set the document's basic properties.
   set document(title: title)
-  let gradetablewidth = 1.7in
+  let gradetablewidth = 16em
   let tableoffset = 5mm
   set page(
     paper: "us-letter",
@@ -165,8 +163,6 @@
   if instructions != none {
     layout(x => [#block(stroke: none, width: x.width - gradetablewidth + tableoffset +3em, [#instructions])])
   }
-
-  before
   
   columns(cols, gutter: gutter, {
     
