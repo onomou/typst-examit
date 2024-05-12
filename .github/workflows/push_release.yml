@@ -36,8 +36,8 @@ jobs:
       - name: Copy release to Typst repo
         run: |
           RELEASE_NUMBER=$(echo "${GITHUB_REF}" | awk -F'/' '{print $3}')
-          mkdir -p /packages/preview/examit/${RELEASE_NUMBER}
-          cp -R * /packages/preview/examit/${RELEASE_NUMBER}/
+          sudo mkdir -p /packages/preview/examit/${RELEASE_NUMBER}
+          sudo cp -R * /packages/preview/examit/${RELEASE_NUMBER}/
 
       - name: Push changes to Typst repository
         uses: ad-m/github-push-action@master
