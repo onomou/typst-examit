@@ -41,8 +41,6 @@ jobs:
           path: typst-packages/packages/preview/examit/${RELEASE_NUMBER}/
 
       - name: Push changes to Typst repository
-        run: |
-          cd typst-packages
-          git add .
-          git commit -m "Add ${RELEASE_NUMBER}"
-          git push
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
