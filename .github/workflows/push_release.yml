@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: typst-packages
 
-      - name: Check-out typst-packages repository
+      - name: Check-out typst-examit repository into typst-packages
         uses: actions/checkout@v4
         with:
           repository: onomou/typst-examit
@@ -41,7 +41,12 @@ jobs:
           path: typst-packages/packages/preview/examit/${RELEASE_NUMBER}/
 
       - name: Push changes to Typst repository
-        uses: ad-m/github-push-action@master
+        uses: actions/checkout@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: onomou/typst-packages
+          repostory: onomou/typst-packages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: typst-packages
+          run: |
+            git add .
+            git commit -m "Add ${RELEASE_NUMBER}"
+            git push
