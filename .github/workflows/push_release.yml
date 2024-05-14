@@ -26,18 +26,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Check-out repository
+      - name: Check-out typst-packages repository
         uses: actions/checkout@v4
         with:
           repository: onomou/typst-packages
           token: ${{ secrets.GITHUB_TOKEN }}
+          path: typst-packages
 
       # Runs a single command using the runners shell
       - name: Copy release to Typst repo
         run: |
           RELEASE_NUMBER=$(echo "${GITHUB_REF}" | awk -F'/' '{print $3}')
-          mkdir -p ${{ github.workspace }}/packages/preview/examit/${RELEASE_NUMBER}
-          cp -R * ${{ github.workspace }}/packages/preview/examit/${RELEASE_NUMBER}/
+          mkdir -p typst-packages/packages/preview/examit/${RELEASE_NUMBER}
+          cp -R * typst-packages/packages/preview/examit/${RELEASE_NUMBER}/
 
       - name: Push changes to Typst repository
         uses: ad-m/github-push-action@master
