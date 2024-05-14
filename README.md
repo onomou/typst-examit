@@ -124,6 +124,8 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
 )
 ```
 
+![examit-example](https://github.com/onomou/typst-examit/assets/131693/78ba6fdc-59c0-460a-89cc-9617c15ac3e0)
+
 ## To Do
 
 - [ ] Parts or sub-questions
