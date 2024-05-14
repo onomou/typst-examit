@@ -43,7 +43,7 @@ jobs:
       - name: Push changes to Typst repository
         uses: actions/checkout@v4
         with:
-          repostory: onomou/typst-packages
+          repository: onomou/typst-packages
           token: ${{ secrets.GITHUB_TOKEN }}
           path: typst-packages
           run: |
