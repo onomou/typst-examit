@@ -1,5 +1,5 @@
 #import "@preview/cetz:0.2.2"
-#import "utilities.typ": img, writingbox
+#import "utilities.typ": *
 #import "questionit.typ": parsequestion, showquestion, pointscounter
 
 #let totalpoints = context pointscounter.final()
@@ -14,7 +14,7 @@
   gutter: 1.3em,
   questions: none,
   instructions: none,
-  showdrawbox: true,
+  extrapicturebox: true,
   dropallboxes: none,
   namebox: "left",
   pointsplacement: "right",
@@ -175,6 +175,13 @@
   })
   let defaultspacing = none
   
+  show ref: it => {
+    if it.element.func() == figure and it.element.supplement == [examit] {
+      questioncounter.at(locate(it.target)).first()
+    } else {
+      it
+    }
+  }
   if questions != none [
     #for question in questions [
       #if question.at("spacing", default: none) != none and question.at("question", default: none) == none {
@@ -211,11 +218,17 @@
           #if question.at("unnumbered", default: false) [
             #parsequestion(question, number: questioncounter.display(), dropallboxes: dropallboxes, defaultpoints: defaultpoints)
           ] else [
-          + #parsequestion(question, number: questioncounter.display(), dropallboxes: dropallboxes, defaultpoints: defaultpoints)
+            + #parsequestion(question, number: questioncounter.display(), dropallboxes: dropallboxes, defaultpoints: defaultpoints)
+            #if question.at("label", default: none) != none [
+              #place[
+                #figure([], supplement: "examit")
+                #label(question.label)
+              ]
+            ]
           ]
         ]
-      ] else if question.at("drawbox", default: none) != none [
-        #writingbox(height: question.drawbox)
+      ] else if question.at("answerbox", default: none) != none [
+        #writingbox(height: question.answerbox)
       ]
       #if question.at("subquestion", default: none) != none [
         #subquestioncounter.update(0)
@@ -236,7 +249,7 @@
   ]
   })
 
-  if showdrawbox {
+  if extrapicturebox {
     v(1fr)
     "If you have time, draw a picture here."
     writingbox(height: 1in)

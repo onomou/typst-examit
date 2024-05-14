@@ -39,7 +39,7 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
   lang: "en",
   font: "New Computer Modern",
 
-  showdrawbox: true, // "If you have time..." box at the end
+  extrapicturebox: true, // "If you have time..." box at the end
   // dropallboxes: true, // points boxes next to answerlines instead of level with the question
   instructions: [Instructions before exam columns.],
   namebox: "left",
@@ -86,7 +86,7 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
     ],
     points: 4,
     bonus: true,
-    drawbox: 3cm,
+    answerbox: 3cm,
   ),
   ( pagebreak: true ),
   ( header: [Graphing]),
@@ -113,6 +113,13 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
     ],
     points: 4,
     spacing: 3cm,
+    label: "wagon"
+  ),
+  (
+    question: [
+      This question references \#@wagon.
+    ],
+    points: 4,
   ),
 )
 ```
@@ -121,7 +128,10 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
 
 - [ ] Parts or sub-questions
 - [ ] Customize numbering for questions
+- [X] References for other questions
+- [ ] Customize marking box properties: size, positioning, style
 - [ ] Better multiple-choice and matching options: box/bubble style, layout arrangement (horizontal/vertical, alignment)
+- [ ] Question types: fill-in-the-blank
 - [ ] Grading table options: bonus points, positioning
 - [ ] Footer options
 - [ ] Margin adjustments based on points position

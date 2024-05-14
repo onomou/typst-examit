@@ -12,7 +12,7 @@
   unnumbered: false,
   bonus: false,
   spacing: 1em,
-  drawbox: none,
+  answerbox: none,
   graph: none,
   numberline: none,
   choices: none,
@@ -69,9 +69,9 @@
     dropboxes
   } else if answerline {
     true
-  } else if choices != none or matching != none or drawbox != none {
+  } else if choices != none or matching != none or answerbox != none {
      false
-  } else if sameline == false {true} // and answerline and writelines == -1 and drawbox != none
+  } else if sameline == false {true} // and answerline and writelines == -1 and answerbox != none
 
   if not willdrop and not ungraded [
     #set place(dy: -3.5pt)
@@ -84,10 +84,10 @@
     #if bonus [(Bonus)]
     #question
 
-    // offset for drawbox
-    #if drawbox != none [
+    // offset for answerbox
+    #if answerbox != none [
       // #v(-3pt)
-      #writingbox(height: drawbox)
+      #writingbox(height: answerbox)
       #v(-10pt)
     ]
     
@@ -242,7 +242,7 @@
     // question.insert("sameline", true)
     question.insert("spacing", -0.5em)
   }
-  if question.at("drawbox", default: none) != none and not exists("answerline") {
+  if question.at("answerbox", default: none) != none and not exists("answerline") {
     question.insert("answerline", false)
     question.insert("spacing", 0pt)
   }
@@ -263,7 +263,7 @@
     unnumbered: question.at("unnumbered", default: false),
     bonus: question.at("bonus", default: false),
     spacing: question.at("spacing", default: 3em),
-    drawbox: question.at("drawbox", default: none),
+    answerbox: question.at("answerbox", default: none),
     graph: question.at("graph", default: none),
     numberline: question.at("numberline", default: none),
     choices: question.at("choices", default: none),
