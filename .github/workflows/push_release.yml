@@ -41,12 +41,8 @@ jobs:
           path: typst-packages/packages/preview/examit/${RELEASE_NUMBER}/
 
       - name: Push changes to Typst repository
-        uses: actions/checkout@v4
-        with:
-          repository: onomou/typst-packages
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: typst-packages
-          run: |
-            git add .
-            git commit -m "Add ${RELEASE_NUMBER}"
-            git push
+        run: |
+          cd typst-packages
+          git add .
+          git commit -m "Add ${RELEASE_NUMBER}"
+          git push
