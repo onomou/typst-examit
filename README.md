@@ -18,7 +18,7 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
 
 `main.typ`
 ```typst
-#import "@preview/examit:0.1.0": *
+#import "@preview/examit:0.1.1": *
 #import "questions.typ": questions
 
 #show: examit.with(
@@ -51,7 +51,7 @@ A Typst exam package based on the MIT LaTeX [exam](https://ctan.org/pkg/exam) pa
 
 `questions.typ`
 ```typst
-#import "@preview/examit:0.1.0": *
+#import "@preview/examit:0.1.1": *
 
 #let questions = (
   ( header: [Multiple Choice] ),

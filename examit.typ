@@ -174,7 +174,7 @@
     numbering("1.a.", n)
   })
   let defaultspacing = none
-  
+
   show ref: it => {
     if it.element.func() == figure and it.element.supplement == [examit] {
       questioncounter.at(locate(it.target)).first()
@@ -198,17 +198,17 @@
       }
       #if question.at("header", default: none) != none {
         [
-          == #question.header
+          = #question.header
         ]
       }
       #if question.at("subheader", default: none) != none {
         [
-          === #question.subheader
+          == #question.subheader
         ]
       }
       #if question.at("subsubheader", default: none) != none {
         [
-          ==== #question.subsubheader
+          === #question.subsubheader
         ]
       }
       #if question.at("question", default: none) != none [
